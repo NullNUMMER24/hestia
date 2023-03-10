@@ -52,17 +52,14 @@ CREATE TABLE IF NOT EXISTS "Tag-Aus" (
 );
 
 INSERT INTO Essen (Name, Kalorien, Proteine)
-VALUES	('Steak', 600),
-	('Salmon', 400),
-	('Rice', 200),
-	('Broccoli', 50),
+VALUES	('Steak', 600, 25),
 	('Big Mac', 498, 12),
 	('Reiswaffel', 90, 1),
-	('Toastbrot', 60),
+	('Toastbrot', 60, 2.9),
 	('Pommes Frites gross', 470, 3.4),
-	('McFlurry Classic', 500),
-	('Crispy Chicken', 530),
-	('Coca-Cola 100ml', 175),
-	('BK KING Fries Cheese & Bacon', 593),
-       	('BK Hot Brownie', 344);
+	('McFlurry Classic', 500, 4),
+	('Crispy Chicken', 530, 17),
+	('Coca-Cola 100ml', 175, 0.1),
+	('BK KING Fries Cheese & Bacon', 594, 5.2),
+       	('BK Hot Brownie', 344, 10.2);
 
