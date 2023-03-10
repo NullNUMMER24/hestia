@@ -1,0 +1,28 @@
+{
+  "name": "hestia",
+  "version": "1.0.0",
+  "description": "Frontend for project hestia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NullNUMMER24/hestia.git"
+  },
+  "keywords": [
+    "sport",
+    "health"
+  ],
+  "author": "NullNUMMER24",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NullNUMMER24/hestia/issues"
+  },
+  "homepage": "https://github.com/NullNUMMER24/hestia#readme",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {}
+}
