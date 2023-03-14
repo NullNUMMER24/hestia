@@ -11,6 +11,8 @@ const pool = new Pool({
   port: 5432, // replace with your PostgreSQL server port number
 });
 
+app.use(express.static('public'));
+
 app.set('view engine', 'pug');
 
 app.get('/', async (req, res) => {
