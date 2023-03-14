@@ -26,8 +26,16 @@ app.get('/', async (req, res) => {
   }
 });
 
+app.get('/table', async (req, res) => {
+  res.render('table');
+});
+
 app.get('/dashboard', async (req, res) => {
     res.render('dashboard');
+});
+
+app.get('/food', async (req, res) => {
+  res.render('food');
 });
 
 app.listen(3000, () => {
