@@ -1,0 +1,9 @@
+doctype html
+html
+  head
+    title Projekt Hestia
+  body
+    h1 Hestia Dashboard
+    each row in rows
+      p= row.name + ' - ' + row.kalorien + ' calories' + ' - ' + row.proteine + ' proteins'
+    a(href='/dashboard') Go to Dashboard

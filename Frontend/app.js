@@ -1,6 +1,7 @@
-const { Pool } = require('pg');
 const express = require('express');
-const ejs = require('ejs');
+const { Pool } = require('pg');
+
+const app = express();
 
 const pool = new Pool({
   user: 'postgres',  // replace with your PostgreSQL username
@@ -10,11 +11,7 @@ const pool = new Pool({
   port: 5432, // replace with your PostgreSQL server port number
 });
 
-const app = express();
-
-app.use(express.static('public'));
-
-app.set('view engine', 'ejs');
+app.set('view engine', 'pug');
 
 app.get('/', async (req, res) => {
   try {
@@ -27,15 +24,8 @@ app.get('/', async (req, res) => {
   }
 });
 
-app.get('/Dashboard', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM essen');
-    const rows = result.rows;
-    res.render('Dashboard', { rows });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
-  }
+app.get('/dashboard', async (req, res) => {
+    res.render('dashboard');
 });
 
 app.listen(3000, () => {
