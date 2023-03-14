@@ -12,6 +12,8 @@ const pool = new Pool({
 
 const app = express();
 
+app.use(express.static('public'));
+
 app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
@@ -19,6 +21,17 @@ app.get('/', async (req, res) => {
     const result = await pool.query('SELECT * FROM essen');
     const rows = result.rows;
     res.render('index', { rows });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/Dashboard', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM essen');
+    const rows = result.rows;
+    res.render('Dashboard', { rows });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');

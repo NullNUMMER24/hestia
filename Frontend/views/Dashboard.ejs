@@ -2,34 +2,28 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Essen table</title>
-  <link rel="stylesheet" href="/style.css">
+  <title>Dashboard</title>
 </head>
 <body>
-  <h1>Essen table</h1>
+<h1>Overview</h1>
   <table>
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Name</th>
         <th>Kalorien</th>
         <th>Proteine</th>
+	<th>Aktive Zeit</th>
       </tr>
     </thead>
     <tbody>
       <% for (let i = 0; i < rows.length; i++) { %>
         <tr>
-          <td><%= rows[i].essen_id %></td>
-          <td><%= rows[i].name %></td>
           <td><%= rows[i].kalorien %></td>
           <td><%= rows[i].proteine %></td>
         </tr>
       <% } %>
     </tbody>
   </table>
-  <button type="button">
-	  <a href="Dashboard.ejs"> Go to Dashboard</a>
-  </button>
+  <button type="button">Go to Essen</button>
 </body>
 </html>
 
