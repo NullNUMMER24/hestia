@@ -20,13 +20,14 @@ CREATE TABLE Ausdauer (
 	Ausdauer_id SERIAL PRIMARY KEY,
 	Name VARCHAR(255) NOT NULL,
 	Distanz INT NOT NULL,
-	Zeit INTERVAL NOT NULL
+	Zeit INT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS Tag (
 	Tag_id SERIAL PRIMARY KEY,
 	Name VARCHAR(255) NOT NULL,
 	Datum DATE NOT NULL,
+	Kilometer INT,
 	Essen_id INT,
 	Kraftsport_id INT,
 	Ausdauer_id INT,
@@ -56,7 +57,7 @@ VALUES	('Steak', 600, 25),
 	('Big Mac', 498, 12),
 	('Reiswaffel', 90, 1),
 	('Toastbrot', 60, 2.9),
-	('Haferflocken mit Obst und Joghurt', 296, 30)
+	('Haferflocken mit Obst und Joghurt', 296, 30),
 	('Fleischvögel mit Kartoffelstock', 598, 7),
 	('Pommes Frites gross', 470, 3.4),
 	('McFlurry Classic', 500, 4),
@@ -68,4 +69,9 @@ VALUES	('Steak', 600, 25),
 INSERT INTO Kraftsport (Name, Reps, Sets)
 VALUES	('Benchpress', 12, 4),
 	('Leggpress', 12, 4),
-	('Leggcurls', 12, 4),
+	('Leggcurls', 12, 4);
+
+INSERT INTO Ausdauer (Name, Distanz, Zeit)
+VALUES	('running 5KM', 5, 30),
+	('running 10KM', 10, 60),
+	('row', 1, 5);
