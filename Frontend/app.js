@@ -20,7 +20,7 @@ app.set('view engine', 'pug');
 
 app.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM essen');
+    const result = await pool.query('SELECT * FROM tag WHERE datum = CURRENT_DATE');
     const rows = result.rows;
     res.render('index', { rows });
   } catch (err) {
@@ -57,7 +57,37 @@ app.post('/addFood', function(req, res) {
   });
 });
 
+app.post('/addWeightTraining', function(req, res) {
+  const exerciseName = req.body.name;
+  const query = `INSERT INTO Tag (Name, Datum, kraftsport_id)
+                 SELECT '${exerciseName}', NOW(), kraftsport_id
+                 FROM Kraftsport
+                 WHERE Name = '${exerciseName}'`;
+  pool.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.send('Error inserting exercise into Tag table');
+    } else {
+      res.redirect('/table');
+    }
+  });
+});
 
+app.post('/addEnduranceTraining', function(req, res) {
+  const exerciseName = req.body.name;
+  const query = `INSERT INTO Tag (Name, Datum, ausdauer_id)
+                 SELECT '${exerciseName}', NOW(), ausdauer_id
+                 FROM Ausdauer
+                 WHERE Name = '${exerciseName}'`;
+  pool.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.send('Error inserting exercise into Tag table');
+    } else {
+      res.redirect('/table');
+    }
+  });
+});
 
 
 app.listen(3000, () => {

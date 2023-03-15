@@ -17,9 +17,32 @@ html
       .left-third
         h1  
       .middle-third
-        h2 Hestia Dashboard
-        each row in rows
-          p= row.name + ' - ' + row.kalorien + ' calories' + ' - ' + row.proteine + ' proteins'
+        h2 Food
+        table
+          thead  
+            tr 
+              th name 
+              th kalorien 
+              th proteine
+          tbody 
+            each row in rows 
+              tr 
+                td= row.name
+                td= row.kalorien
+                td= row.proteine
+
+        h2 Weightsport 
+        table
+          thead  
+            tr 
+              th name 
+              th anzahl
+
+          tbody 
+            each row in rows 
+              tr 
+                td= row.name
+                td= row.kalorien
 
       .right-third
         h1 
