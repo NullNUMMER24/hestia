@@ -14,13 +14,13 @@ html
         a(href='/table') Add new Data
        
   .h2 Food
-  form(method='POST', action='/addData')
+  form(method='POST', action='/addFood')
     label(for='name') Name of the food: 
     input(type='text', name='name', placeholder='Enter food name')
     button(type='submit') Add Data
 
   .h2 Weight-Training 
-  form(method='POST', action='/addData')
+  form(method='POST', action='/addWeightTraining')
     label(for='name') Name of the exercise: 
     input(type='text', name='name', placeholder='Enter exercise name')
     label(for='name') Amount of repetitions per set: 
@@ -30,7 +30,7 @@ html
     button(type='submit') Add Data
 
   .h2 Endurance-Training 
-  form(method='POST', action='/addData')
+  form(method='POST', action='/addEnduranceTraining')
     label(for='name') Name of the exercise: 
     input(type='text', name='name', placeholder='Enter exercise name')
     label(for='name') Time of the exercise: 

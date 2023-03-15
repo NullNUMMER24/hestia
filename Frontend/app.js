@@ -1,5 +1,7 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const { Pool } = require('pg');
+
 
 const app = express();
 
@@ -12,6 +14,7 @@ const pool = new Pool({
 });
 
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'pug');
 
@@ -37,6 +40,25 @@ app.get('/dashboard', async (req, res) => {
 app.get('/food', async (req, res) => {
   res.render('food');
 });
+
+app.post('/addFood', function(req, res) {
+  const foodName = req.body.name;
+  const query = `INSERT INTO Tag (Name, Datum, Essen_id)
+                 SELECT '${foodName}', NOW(), Essen_id
+                 FROM Essen
+                 WHERE Name = '${foodName}'`;
+  pool.query(query, (err, result) => {
+    if (err) {
+      console.error(err);
+      res.send('Error inserting food into Tag table');
+    } else {
+      res.redirect('/table');
+    }
+  });
+});
+
+
+
 
 app.listen(3000, () => {
   console.log('Server listening on http://localhost:3000');
