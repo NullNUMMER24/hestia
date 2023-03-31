@@ -1,0 +1,64 @@
+doctype html
+html
+  head
+    title Projekt Hestia
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    .menu-bar
+      .logo
+        img(src="/images/hestia_logo.png", alt="Logo")
+      .site-title
+        h1 Dashboard 
+      .links   
+        a(href='/dashboard') Go to Dashboard
+        a(href='/table') Add new Data
+
+    .startsite
+      .left-third
+        h1  
+      .middle-third
+        h2 Food
+        table
+          thead  
+            tr 
+              th name 
+              th kalorien 
+              th proteine
+          tbody 
+            each row in rows 
+              tr 
+                td= row.name
+                td= row.kalorien
+                td= row.proteine
+
+        h2 Weightsport 
+        table
+          thead  
+            tr 
+              th name 
+              th anzahl
+
+          tbody 
+            each row in rows 
+              tr 
+                td= row.name
+                td= row.kalorien
+
+        h2 Endurancesport
+        table
+          thead  
+            tr 
+              th name 
+              th anzahl
+
+          tbody 
+            each row in rows 
+              tr 
+                td= row.name
+                td= row.kalorien
+                
+      .right-third
+        h1 
+
+  footer 
+    a(href='https://github.com/NullNUMMER24/hestia/tree/main') Project Hestia

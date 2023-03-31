@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title Projekt Hestia
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    .menu-bar
+      .logo
+        img(src="/images/hestia_logo.png", alt="Logo")
+      .site-title
+        h1 Dashboard 
+      
+      .links   
+        a(href='/dashboard') Go to Dashboard
+
+        a(href='/table') Add new Data
+
+    .startsite
+      .left-third
+        h1  
+      .middle-third
+        h2 Hestia Dashboard
+        each row in rows
+          p= row.name + ' - ' + row.kalorien + ' calories' + ' - ' + row.proteine + ' proteins'
+
+      .right-third
+        h1 
+
