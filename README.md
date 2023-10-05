@@ -1,25 +1,15 @@
-# HESTIA
-Was ist das Projekt Hestia:
-	Ich möchte gerne eine eigene Applikation schreiben, um meine Gesundheitsdaten im Überblick zu behalten. 
+# $\text{\color{teal}{HESTIA}}$
+> [!IMPORTANT]
+> Dieses Projekt ist noch im Aufbau
+## Was ist das Projekt Hestia:
+Ich möchte gerne eine eigene Applikation schreiben, um meinen Tag besser zu organisieren sowie eine Übersicht über die vergangenen Tage erhalten.
 
-### Wie wird mein Programm geschrieben:
-	Es wird eine Webapplikation, welche in zwei verschiedene Container gebaut wird. 
-
+## Wie wird mein Programm geschrieben:
+Bei dem Projekt Hestia handelt es sich um eine Webapplikation. Diese beinhaltet ein Frontend sowie ein Backend. 
 ### Backend:
-	Mein Backend enthält eine Postgres Datenbank. Mehr zum Backend in instructions.md
-
-### Frontend:
-	Frontend wird bei mir ein node.js projekt
-
-# Frontend
-	Mein Frontend wird mit PUG und Node.js geschrieben. Sobald dies fertig ist, werde ich es versuchen in einen Container zu verpacken. 
-
-# Backend
-	Das Backen ist eine Postgres Datenbank. Das Dockerfile dazu befindet sich im Backendordner. Zusammen mit dem Dockerimage wird gerade noch die Datenbank im Image erstellt. Das SQL Script welches dazu verwendet wird ist das [[init.sql]]. Genauere anweisungen zum Backend sind im [[instructions.md]] zu finden. 
+Mein Backend enthält eine Postgres Datenbank. Geplant ist die Datenbank so:
+![DB-Diagram.drawio](ressouces/Database/DB-Diagram.drawio.png)
+### Frontend
+Mein Frontend wird mit PUG und Node.js geschrieben.
 
 # Aktueller stand
-- [+] Daten über Internetseite zur Tag-Tabelle hinzufügen. 
-- [] Daten über Internetseite von Tag-Tabelle entfernen.
-- [] Daten im [[init.sql]] für Essen Tabelle hinzufügen
-- [] Daten im [[init.sql]] für Kraftsport Tabelle hinzufügen
-- [] Daten im [[init.sql]] für Ausdauer Tabelle hinzufügen
