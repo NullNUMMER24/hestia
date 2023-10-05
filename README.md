@@ -1,4 +1,4 @@
-# $\text{\color{teal}{HESTIA}}$
+$\text{\color{teal}{\huge HESTIA}}$
 > [!IMPORTANT]
 > Dieses Projekt ist noch im Aufbau
 ## Was ist das Projekt Hestia:
