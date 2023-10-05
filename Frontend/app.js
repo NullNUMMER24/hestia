@@ -7,7 +7,7 @@ const app = express();
 
 const pool = new Pool({
   user: 'postgres',  // replace with your PostgreSQL username
-  host: 'localhost', // replace with your PostgreSQL server hostname or IP address
+  host: 'hestia-backend', // replace with the name or ID of your PostgreSQL container
   database: 'hestia', // replace with your PostgreSQL database name
   password: '123', // replace with your PostgreSQL password
   port: 5432, // replace with your PostgreSQL server port number
@@ -93,4 +93,5 @@ app.post('/addEnduranceTraining', function(req, res) {
 app.listen(3000, () => {
   console.log('Server listening on http://localhost:3000');
 });
+
 
