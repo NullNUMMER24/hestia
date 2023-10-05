@@ -52,6 +52,22 @@ CREATE TABLE IF NOT EXISTS "Day-Cardio" (
 	FOREIGN KEY (Cardio_id) REFERENCES Cardio(Cardio_id)
 );
 
+CREATE TABLE IF NOT EXISTS ToDo (
+	ToDo_id SERIAL PRIMARY KEY,
+	TaskName VARCHAR(255) NOT NULL,
+	Deadline DATE NOT NULL,
+	Urgency VARCHAR(255) NOT NULL,
+	Description VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS ToDo_Work (
+	ToDo_Work_id SERIAL PRIMARY KEY,
+	TaskName VARCHAR(255) NOT NULL,
+	Deadline DATE NOT NULL,
+	Urgency VARCHAR(255) NOT NULL,
+	Description VARCHAR(255) NOT NULL
+);
+
 INSERT INTO Food (Name, Calories, Proteine)
 VALUES	('Steak', 600, 25),
 	('Big Mac', 498, 12),
