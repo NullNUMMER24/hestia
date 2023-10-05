@@ -20,7 +20,7 @@ app.set('view engine', 'pug');
 
 app.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM tag WHERE datum = CURRENT_DATE');
+    const result = await pool.query('SELECT * FROM Day WHERE Date = CURRENT_DATE');
     const rows = result.rows;
     res.render('index', { rows });
   } catch (err) {
@@ -43,9 +43,9 @@ app.get('/food', async (req, res) => {
 
 app.post('/addFood', function(req, res) {
   const foodName = req.body.name;
-  const query = `INSERT INTO Tag (Name, Datum, Essen_id)
-                 SELECT '${foodName}', NOW(), Essen_id
-                 FROM Essen
+  const query = `INSERT INTO Tag (Name, Date, Food_id)
+                 SELECT '${foodName}', NOW(), Food_id
+                 FROM Food
                  WHERE Name = '${foodName}'`;
   pool.query(query, (err, result) => {
     if (err) {
@@ -59,9 +59,9 @@ app.post('/addFood', function(req, res) {
 
 app.post('/addWeightTraining', function(req, res) {
   const exerciseName = req.body.name;
-  const query = `INSERT INTO Tag (Name, Datum, kraftsport_id)
-                 SELECT '${exerciseName}', NOW(), kraftsport_id
-                 FROM Kraftsport
+  const query = `INSERT INTO Day (Name, Date, Weight_id)
+                 SELECT '${exerciseName}', NOW(), Weight_id
+                 FROM Weight
                  WHERE Name = '${exerciseName}'`;
   pool.query(query, (err, result) => {
     if (err) {
@@ -75,9 +75,9 @@ app.post('/addWeightTraining', function(req, res) {
 
 app.post('/addEnduranceTraining', function(req, res) {
   const exerciseName = req.body.name;
-  const query = `INSERT INTO Tag (Name, Datum, ausdauer_id)
-                 SELECT '${exerciseName}', NOW(), ausdauer_id
-                 FROM Ausdauer
+  const query = `INSERT INTO Day (Name, Date, Cardio_id)
+                 SELECT '${exerciseName}', NOW(), Cardio_id
+                 FROM Cardio
                  WHERE Name = '${exerciseName}'`;
   pool.query(query, (err, result) => {
     if (err) {

@@ -1,4 +1,4 @@
-# $\text{\color{teal}{HESTIA}}$
+$\text{\color{teal}{\Huge HESTIA}}$
 > [!IMPORTANT]
 > Dieses Projekt ist noch im Aufbau
 ## Was ist das Projekt Hestia:
@@ -12,4 +12,8 @@ Mein Backend enthält eine Postgres Datenbank. Geplant ist die Datenbank so:
 ### Frontend
 Mein Frontend wird mit PUG und Node.js geschrieben.
 
-# Aktueller stand
+# To Do
+## DB Diagramm anpassen:
+- [ ]  Food --> + Proteine 
+- [ ]  Weight-Training --> Weight
+- [ ] Tag --> Day (auch ID anpassen)

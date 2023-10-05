@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   hestia-backend:
-    build: ./Backend/.
+    build: ./backend/.
     container_name: hestia-backend
     hostname: hestia-backend
     ports:
@@ -13,7 +13,7 @@ services:
       - hestia-network
 
   hestia-frontend:
-    build: ./Frontend/hestia-frontend/.
+    build: ./brontend/.
     container_name: hestia-frontend
     hostname: hestia-frontend
     ports:

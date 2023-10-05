@@ -2,57 +2,57 @@ CREATE DATABASE hestia;
 
 \c hestia;
 
-CREATE TABLE Essen (
-	Essen_id SERIAL PRIMARY KEY,
+CREATE TABLE Food (
+	Food_id SERIAL PRIMARY KEY,
 	Name VARCHAR(255) NOT NULL,
-	Kalorien INT NOT NULL,
+	Calories INT NOT NULL,
  	Proteine INT NOT NULL
 );
 
-CREATE TABLE Kraftsport (
-	Kraftsport_id SERIAL PRIMARY KEY,
+CREATE TABLE Weight (
+	Weight_id SERIAL PRIMARY KEY,
 	Name VARCHAR(255) NOT NULL,
 	Reps INT NOT NULL,
 	Sets INT NOT NULL
 );
 
-CREATE TABLE Ausdauer (
-	Ausdauer_id SERIAL PRIMARY KEY,
+CREATE TABLE Cardio (
+	Cardio_id SERIAL PRIMARY KEY,
 	Name VARCHAR(255) NOT NULL,
-	Distanz INT NOT NULL,
-	Zeit INT NOT NULL
+	Distance INT NOT NULL,
+	Duration INT NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Tag (
-	Tag_id SERIAL PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS Day (
+	Day_id SERIAL PRIMARY KEY,
 	Name VARCHAR(255) NOT NULL,
-	Datum DATE NOT NULL,
-	Kilometer INT,
-	Essen_id INT,
-	Kraftsport_id INT,
-	Ausdauer_id INT,
-	FOREIGN KEY (Essen_id) REFERENCES Essen (Essen_id),
-	FOREIGN KEY (Kraftsport_id) REFERENCES Kraftsport (Kraftsport_id),
-	FOREIGN KEY (Ausdauer_id) REFERENCES Ausdauer (Ausdauer_id)
+	Date DATE NOT NULL,
+	Distance INT,
+	Food_id INT,
+	Weight_id INT,
+	Cardio_id INT,
+	FOREIGN KEY (Food_id) REFERENCES Food (Food_id),
+	FOREIGN KEY (Weight_id) REFERENCES Weight (Weight_id),
+	FOREIGN KEY (Cardio_id) REFERENCES Cardio (Cardio_id)
 );
 
-CREATE TABLE IF NOT EXISTS "Tag-Kraft" (
-	Tag_id INT NOT NULL,
-	Kraftsport_id INT NOT NULL,
-	PRIMARY KEY (Tag_id, Kraftsport_id),
-	FOREIGN KEY (Tag_id) REFERENCES Tag(Tag_id),
-	FOREIGN KEY (Kraftsport_id) REFERENCES Kraftsport(Kraftsport_id)
+CREATE TABLE IF NOT EXISTS "Day-Weight" (
+	Day_id INT NOT NULL,
+	Weight_id INT NOT NULL,
+	PRIMARY KEY (Day_id, Weight_id),
+	FOREIGN KEY (Day_id) REFERENCES Day(day_id),
+	FOREIGN KEY (Weight_id) REFERENCES Weight(Weight_id)
 );
 
-CREATE TABLE IF NOT EXISTS "Tag-Aus" (
-	Tag_id INT NOT NULL,
-	Ausdauer_id INT NOT NULL,
-	PRIMARY KEY (Tag_id, Ausdauer_id),
-	FOREIGN KEY (Tag_id) REFERENCES Tag(Tag_id),
-	FOREIGN KEY (Ausdauer_id) REFERENCES Ausdauer(Ausdauer_id)
+CREATE TABLE IF NOT EXISTS "Day-Cardio" (
+	Day_id INT NOT NULL,
+	Cardio_id INT NOT NULL,
+	PRIMARY KEY (Day_id, Cardio_id),
+	FOREIGN KEY (Day_id) REFERENCES Day(Day_id),
+	FOREIGN KEY (Cardio_id) REFERENCES Cardio(Cardio_id)
 );
 
-INSERT INTO Essen (Name, Kalorien, Proteine)
+INSERT INTO Food (Name, Calories, Proteine)
 VALUES	('Steak', 600, 25),
 	('Big Mac', 498, 12),
 	('Reiswaffel', 90, 1),
@@ -66,12 +66,12 @@ VALUES	('Steak', 600, 25),
 	('BK KING Fries Cheese & Bacon', 594, 5.2),
     ('BK Hot Brownie', 344, 10.2);
 
-INSERT INTO Kraftsport (Name, Reps, Sets)
+INSERT INTO Weight (Name, Reps, Sets)
 VALUES	('Benchpress', 12, 4),
 	('Leggpress', 12, 4),
 	('Leggcurls', 12, 4);
 
-INSERT INTO Ausdauer (Name, Distanz, Zeit)
+INSERT INTO Cardio (Name, Distance, Duration)
 VALUES	('running 5KM', 5, 30),
 	('running 10KM', 10, 60),
 	('row', 1, 5);
