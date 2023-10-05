@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  hestia-backend:
+    build: ./Backend/.
+    container_name: hestia-backend
+    hostname: hestia-backend
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 123
+    networks:
+      - hestia-network
+
+  hestia-frontend:
+    build: ./Frontend/hestia-frontend/.
+    container_name: hestia-frontend
+    hostname: hestia-frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - hestia-network
+
+networks:
+  hestia-network:
+    driver: bridge
+

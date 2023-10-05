@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title Add New Data
+    link(rel='stylesheet', href='/css/style.css')
+  body
+    .menu-bar
+      .logo
+        img(src="/images/hestia_logo.png", alt="Logo")
+      .site-title
+        h1 Add Data
+      .links   
+        a(href='/dashboard') Go to Dashboard
+        a(href='/table') Add new Data
+       
+  .h2 Food
+  form(method='POST', action='/addFood')
+    label(for='name') Name of the food: 
+    input(type='text', name='name', placeholder='Enter food name')
+    button(type='submit') Add Data
+
+  .h2 Weight-Training 
+  form(method='POST', action='/addWeightTraining')
+    label(for='name') Name of the exercise: 
+    input(type='text', name='name', placeholder='Enter exercise name')
+    button(type='submit') Add Data
+
+  .h2 Endurance-Training 
+  form(method='POST', action='/addEnduranceTraining')
+    label(for='name') Name of the exercise: 
+    input(type='text', name='name', placeholder='Enter exercise name')
+    label(for='name') Time of the exercise: 
+    input(type='text', name='name', placeholder='Enter exercise duration')
+    label(for='name') Distance of the training: 
+    input(type='text', name='name', placeholder='Enter distance')
+    button(type='submit') Add Data
