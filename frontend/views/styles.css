@@ -15,21 +15,22 @@
     justify-content: space-around;
     height: 600px;
     background-attachment: scroll;
+    flex-direction: column;
 }
 
 .Food {
     border-radius: 25px;
-    background-color: red;
+    background-color: grey;
     height: 10%;
     width: 20%;
     text-align: center;
-    margin-top: auto;
+    margin-top: 20%;
     margin-bottom: auto;
 }
 
 .Exercise {
     border-radius: 25px;
-    background-color: red;
+    background-color: grey;
     height: 10%;
     width: 20%;
     text-align: center;
@@ -39,10 +40,16 @@
 
 .ToDo {
     border-radius: 25px;
-    background-color: red;
+    background-color: grey;
     height: 10%;
     width: 20%;
     text-align: center;
     margin-top: auto;
     margin-bottom: auto;
+}
+
+.main {
+    background-color: white;
+    width: 80%;
+    margin:auto
 }
