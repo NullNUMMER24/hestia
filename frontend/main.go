@@ -32,6 +32,13 @@ type Weight struct {
 	Sets int
 }
 
+type Cardio struct {
+	ID       int
+	Name     string
+	Distance int
+	Duration int
+}
+
 func main() {
 	// Connect to PostgreSQL database
 	db, err := sql.Open("postgres", "postgresql://postgres:123@localhost/hestia?sslmode=disable")
@@ -83,7 +90,7 @@ func main() {
 			</style>
         </head>
         <body>
-            <a href="/food">Food</a> | <a href="/todo">To-Do</a> | <a href="/weight">Weight</a>
+            <a href="/food">Food</a> | <a href="/todo">To-Do</a> | <a href="/weight">Weight</a> | <a href="/cardio">Cardio</a>
         </body>
         </html>
     `))
@@ -345,6 +352,131 @@ func main() {
 
 		// Redirect back to the weight table page
 		http.Redirect(w, r, "/weight", http.StatusSeeOther)
+	})
+
+	// Define the HTML template for the Weight table
+	var cardioTmpl = template.Must(template.New("cardio").Parse(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>HESTIA - Cardio Table</title>
+			<style>
+				body {
+					background-color: #222;
+					color: #fff;
+				}
+				table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+				th, td {
+					padding: 8px;
+					text-align: left;
+					border-bottom: 1px solid #444;
+				}
+				th {
+					background-color: #333;
+				}
+				tr:nth-child(even) {
+					background-color: #333;
+				}
+				form {
+					margin-top: 20px;
+				}
+				input[type="text"], input[type="submit"] {
+					padding: 5px;
+					font-size: 16px;
+					border: none;
+					border-radius: 4px;
+					background-color: #444;
+					color: #fff;
+					margin-right: 10px;
+				}
+			</style>
+        </head>
+        <body>
+			<a href="/nav">Navigation</a> | <a href="/food">Food</a> | <a href="/todo">To-Do</a>
+            <h1>Food Table</h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Distance</th>
+                    <th>Duration</th>
+                </tr>
+                {{range .}}
+                <tr>
+                    <td>{{.ID}}</td>
+                    <td>{{.Name}}</td>
+                    <td>{{.Distance}}</td>
+                    <td>{{.Duration}}</td>
+                </tr>
+                {{end}}
+            </table>
+            <h2>Add New Cardop Entry</h2>
+            <form action="/addcardio" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <label for="Distance">Distance:</label>
+                <input type="text" id="Distance" name="Distance">
+                <label for="Duration">Duration:</label>
+                <input type="text" id="Duration" name="Duration">
+                <input type="submit" value="Add Cardio">
+            </form>
+        </body>
+        </html>
+    `))
+
+	// Serve the HTML content for the Cardio table
+	http.HandleFunc("/cardio", func(w http.ResponseWriter, r *http.Request) {
+		// Query the database for existing cardio entries
+		rows, err := db.Query("SELECT * FROM Cardio")
+		if err != nil {
+			log.Fatal("Error querying the database:", err)
+		}
+		defer rows.Close()
+
+		// Retrieve data from rows
+		var cardios []Cardio
+		for rows.Next() {
+			var cardio Cardio
+			if err := rows.Scan(&cardio.ID, &cardio.Name, &cardio.Distance, &cardio.Duration); err != nil {
+				log.Fatal("Error scanning row:", err)
+			}
+			cardios = append(cardios, cardio)
+		}
+
+		// Execute the HTML template to display the Cardio table
+		if err := cardioTmpl.Execute(w, cardios); err != nil {
+			log.Println("Error executing template:", err)
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			return
+		}
+	})
+
+	// Handle form submission to add a new cardio entry
+	http.HandleFunc("/addcardio", func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodPost {
+			http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+			return
+		}
+
+		name := r.FormValue("name")
+		Distance := r.FormValue("Distance")
+		Duration := r.FormValue("Duration")
+
+		// Insert the new cardio entry into the database
+		_, err := db.Exec("INSERT INTO Cardio (Name, Distance, Duration) VALUES ($1, $2, $3)", name, Distance, Duration)
+		if err != nil {
+			log.Println("Error inserting new food entry:", err)
+			http.Error(w, "Internal server error", http.StatusInternalServerError)
+			return
+		}
+
+		// Redirect back to the cardio table page
+		http.Redirect(w, r, "/cardio", http.StatusSeeOther)
 	})
 
 	// Define the HTML template for the To-Do list
