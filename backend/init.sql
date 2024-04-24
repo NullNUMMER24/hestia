@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS Day (
 	FOREIGN KEY (Cardio_id) REFERENCES Cardio (Cardio_id)
 );
 
-CREATE TABLE IF NOT EXISTS "Day-Weight" (
+CREATE TABLE IF NOT EXISTS "DayWeight" (
 	Day_id INT NOT NULL,
 	Weight_id INT NOT NULL,
 	PRIMARY KEY (Day_id, Weight_id),
@@ -44,12 +44,20 @@ CREATE TABLE IF NOT EXISTS "Day-Weight" (
 	FOREIGN KEY (Weight_id) REFERENCES Weight(Weight_id)
 );
 
-CREATE TABLE IF NOT EXISTS "Day-Cardio" (
+CREATE TABLE IF NOT EXISTS "DayCardio" (
 	Day_id INT NOT NULL,
 	Cardio_id INT NOT NULL,
 	PRIMARY KEY (Day_id, Cardio_id),
 	FOREIGN KEY (Day_id) REFERENCES Day(Day_id),
 	FOREIGN KEY (Cardio_id) REFERENCES Cardio(Cardio_id)
+);
+
+CREATE TABLE IF NOT EXISTS "DayFood" (
+	Day_id INT NOT NULL,
+	Food_id INT NOT NULL,
+	PRIMARY KEY (Day_id, Food_id),
+	FOREIGN KEY (Day_id) REFERENCES Day(day_id),
+	FOREIGN KEY (Food_id) REFERENCES Food(Food_id)
 );
 
 CREATE TABLE IF NOT EXISTS ToDo (

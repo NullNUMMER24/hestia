@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>HESTIA - Cardio Table</title>
+			<style>
+				body {
+					background-color: #222;
+					color: #fff;
+				}
+				table {
+					border-collapse: collapse;
+					width: 100%;
+				}
+				th, td {
+					padding: 8px;
+					text-align: left;
+					border-bottom: 1px solid #444;
+				}
+				th {
+					background-color: #333;
+				}
+				tr:nth-child(even) {
+					background-color: #333;
+				}
+				form {
+					margin-top: 20px;
+				}
+				input[type="text"], input[type="submit"] {
+					padding: 5px;
+					font-size: 16px;
+					border: none;
+					border-radius: 4px;
+					background-color: #444;
+					color: #fff;
+					margin-right: 10px;
+				}
+			</style>
+        </head>
+        <body>
+			<a href="/nav">Navigation</a> | <a href="/food">Food</a> | <a href="/todo">To-Do</a>
+            <h1>Food Table</h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Distance</th>
+                    <th>Duration</th>
+                </tr>
+                {{range .}}
+                <tr>
+                    <td>{{.ID}}</td>
+                    <td>{{.Name}}</td>
+                    <td>{{.Distance}}</td>
+                    <td>{{.Duration}}</td>
+                </tr>
+                {{end}}
+            </table>
+            <h2>Add New Cardop Entry</h2>
+            <form action="/addcardio" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+                <label for="Distance">Distance:</label>
+                <input type="text" id="Distance" name="Distance">
+                <label for="Duration">Duration:</label>
+                <input type="text" id="Duration" name="Duration">
+                <input type="submit" value="Add Cardio">
+            </form>
+        </body>
+        </html>
