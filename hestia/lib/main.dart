@@ -1,112 +1,75 @@
+// lib/main.dart
 import 'package:flutter/material.dart';
+import 'dashboard.dart';  // Import the second page
+//import 'login.dart';   // Import the third page
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HESTIA Login Site',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: const LoginScreen(),
+      title: 'Flutter startsite',
+      home: HomePage(),
+      theme: ThemeData(
+	scaffoldBackgroundColor: const Color(0xFFEFEFEF),
+      )
     );
   }
 }
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
-
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  'assets/hestia_logo.png', // This is the logo I defined
-                  height: 100, // Adjust the height as needed
+      appBar: AppBar(
+        title: Text('Home Page'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text(
+                'Menu',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
                 ),
-                const SizedBox(height: 20),
-                const Text(
-                  'Login',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 20),
-                const LoginForm(),
-              ],
+              ),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            Image.asset( //Debug - remove this
+	     'assets/hestia_logo.png',
+	     height: 200,
+	    ),
             ),
-          ),
+            ListTile(
+              title: Text('Dashboard'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => dashboard()),
+                );
+              },
+            ),
+           // ListTile(
+           //   title: Text('Login'),
+           //   onTap: () {
+           //     Navigator.push(
+           //       context,
+           //       MaterialPageRoute(builder: (context) => login()),
+           //     );
+           //   },
+           // ),
+          ],
         ),
       ),
-    );
-  }
-}
-
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
-
-  @override
-  State<LoginForm> createState() => _LoginFormState();
-}
-
-class _LoginFormState extends State<LoginForm> {
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      child: Column(
-        children: [
-          TextFormField(
-            controller: _usernameController,
-            decoration: const InputDecoration(
-              labelText: 'Username',
-              border: OutlineInputBorder(),
-            ),
-          ),
-          const SizedBox(height: 16),
-          TextFormField(
-            controller: _passwordController,
-            decoration: const InputDecoration(
-              labelText: 'Password',
-              border: OutlineInputBorder(),
-            ),
-            obscureText: true,
-          ),
-          const SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () {
-              // Implement your login logic here
-              final username = _usernameController.text;
-              final password = _passwordController.text;
-              // Show a simple alert dialog for demonstration
-              showDialog(
-                context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    title: const Text('Login Attempt'),
-                    content: Text('Username: $username\nPassword: $password'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.of(context).pop(),
-                        child: const Text('OK'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-            child: const Text('Login'),
-          ),
-        ],
+      body: Center(
+        child: Text('Welcome to the Home Page!'),
       ),
     );
   }
